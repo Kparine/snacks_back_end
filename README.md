@@ -1,11 +1,11 @@
 # __Snacks Back End__ 
 
 
-Web Application Purpose Built To Exercise Authorization/Authentication, Database Interactions, & Cumulative HTML/CSS & JavaScript Skills.
+Web application purpose built to exercise authorization/authentication and database interactions, while building on my cumulative HTML/CSS, SASS, JavaScript, Express.js, and Node.js skills.
 
-## __Installation__
+### __Installation Instructions__
 
-* Download
+* Download 
 
 * Run ```npm install```
 

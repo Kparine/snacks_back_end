@@ -14,7 +14,7 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-////////////////////////ROUTES////////////////////////
+////////////////////////ROUTES//////////////////////////////
 
 app.use('/auth', require('/routes/auth'))
 app.use('/users', require('/routes/users'))

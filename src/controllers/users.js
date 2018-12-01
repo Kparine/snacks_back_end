@@ -1,5 +1,14 @@
 const userModel = require('../models/users')
 
+function userReview(req, res, next) {
+  const id = req.params.id
+  return userModel.userReview(id)
+  .then(result => {
+    res.send(200).send({ data: result })
+  })
+  .catch(next)
+} 
+
 
 function create(req, res, next){
   if(!req.body.username){
@@ -15,4 +24,4 @@ function create(req, res, next){
   .catch(next)
 }
 
-module.exports = { create }
+module.exports = { create, userReview }
