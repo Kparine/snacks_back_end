@@ -1,7 +1,7 @@
-const express = require('express');
-const knex = require('../db/knex');
+const express = require('express')
+const knex = require('../db/knex')
 
-const router = express.Router();
+const router = express.Router()
 
 router.get('/snacks', (req, res, next) => {
   knex('snacks')
@@ -11,4 +11,4 @@ router.get('/snacks', (req, res, next) => {
     .catch((err) => next(err))
 })
 
-module.exports = router;
+module.exports = router

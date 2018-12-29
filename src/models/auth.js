@@ -18,12 +18,17 @@ function login(username, password) {
 
       return bcrypt.compare(password, data.password)
     })
-    .then(function(status) {
-      if(!status) throw { status: 401, message: 'Unauthorized' }
+    .then(function (status) {
+      if (!status) throw {
+        status: 401,
+        message: 'Unauthorized'
+      }
 
       delete username.password
       return user
     })
 }
 
-module.exports = { login }
+module.exports = {
+  login
+}
