@@ -1,4 +1,4 @@
-const TABLE_NAME = 'ratings'
+const TABLE_NAME = 'reviews'
 
 exports.seed = knex => {
   return knex(TABLE_NAME).insert([{

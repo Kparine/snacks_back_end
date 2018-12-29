@@ -6,7 +6,6 @@ const userModel = require('./users')
 function login(username, password) {
   let user
 
-
   return userModel.getOneByUserName(username)
     .then(function (data) {
       if (!data) throw {

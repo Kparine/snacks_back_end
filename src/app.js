@@ -21,11 +21,8 @@ app.use('/users', require('/routes/users'))
 app.use('/snacks', require('/routes/snacks'))
 app.use('/reviews', require('/routes/reviews'))
 
-
-
-// const snacks = require('./routes/snacks');
-// app.use('/api', snacks);
-
+const snacks = require('./routes/snacks');
+app.use('/api', snacks);
 
 ////////////////////////DEFAULT ROUTE////////////////////////
 

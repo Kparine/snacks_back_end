@@ -9,7 +9,6 @@ function userReview(req, res, next) {
   .catch(next)
 } 
 
-
 function create(req, res, next){
   if(!req.body.username){
     return next({status: 400, message: 'Bad Username'})
