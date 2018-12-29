@@ -1,6 +1,6 @@
 const snacks = require('../data/snacks.json')
 
-exports.seed = function(knex, Promise) {
+exports.seed = knex => {
   return knex('snacks').del()
     .then(() => {
       return knex('snacks').insert(snacks);
