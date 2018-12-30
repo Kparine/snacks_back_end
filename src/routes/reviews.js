@@ -8,6 +8,8 @@ const authController = require('../controllers/auth')
 router.get('/', controllers.getAll)
 router.get('/', controllers.getOne)
 
+
+
 //////// AUTHORIZED ROUTES //////// 
 
 router.post('/reviews', )
