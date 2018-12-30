@@ -2,14 +2,11 @@
   "name": "snacks-back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/server.js",
     "knex": "knex",
-    "latest": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
+    "start": "node ./src/server.js"
   },
   "author": "",
   "license": "ISC",
