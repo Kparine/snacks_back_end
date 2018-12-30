@@ -16,10 +16,10 @@ app.use(bodyParser.json())
 
 ////////////////////////ROUTES//////////////////////////////
 
-app.use('/auth', require('/routes/auth'))
-app.use('/users', require('/routes/users'))
-app.use('/snacks', require('/routes/snacks'))
-app.use('/reviews', require('/routes/reviews'))
+app.use('/auth', require('./routes/auth'))
+app.use('/users', require('./routes/users'))
+app.use('/snacks', require('./routes/snacks'))
+app.use('/reviews', require('./routes/reviews'))
 
 const snacks = require('./routes/snacks');
 app.use('/api', snacks);

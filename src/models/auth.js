@@ -1,4 +1,4 @@
-const db = require('../../db')
+const db = require('../../db/knex')
 const bcrypt = require('bcrypt')
 const userModel = require('./users')
 
