@@ -1,4 +1,4 @@
-const db = require('../../db')
+const db = require('../../db/knex.js')
 const bcrypt = require('bcrypt')
 
 
