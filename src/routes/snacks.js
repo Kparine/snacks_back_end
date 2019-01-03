@@ -1,11 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const controllers = require('../controllers/snacks')
 
-// router.get()
 
-// router.get()
-// router.post()
-// router.put()
-// router.delete()
+router.get('/', controllers.getAll)
+router.get('/:sId', controllers.getOne)
+
 
 module.exports = router

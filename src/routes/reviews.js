@@ -5,15 +5,13 @@ const authController = require('../controllers/auth')
 
 //////// GENERAL ROUTES //////// 
 
-router.get('/', controllers.getAll)
-router.get('/', controllers.getOne)
-
-
+router.get('/reviews', controllers.getAll)
+router.get('/reviews/:rId', controllers.getOne)
 
 //////// AUTHORIZED ROUTES //////// 
 
-router.post('/reviews', )
-router.put('/reviews', )
-router.delete('/reviews', )
+router.post('/reviews', authController.isAuthenticated, authController.getAuthStatus, controllers.create)
+router.put('/reviews/:rId', authController.isAuthenticated, authController.isSelf, controllers.update )
+router.delete('/reviews/:rId', authController.isAuthenticated,  authController.isSelf, controllers.remove)
 
 module.exports = router
