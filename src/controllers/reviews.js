@@ -2,15 +2,18 @@ const reviewsModel = require('../models/reviews')
 
 
 function getOne(req, res, next) {
-  reviewsModel.getOne(req.params.id)
-  if (!data) return next({ status: 404, messsage: data })
-    res.status(200).send({ data })
+  reviewsModel.getOne(req.params.id)  
+  if (!req.body) return next({ status: 404, messsage: 'Post Does Not Exist' })
+    res.status(200).send(req.body)
 }
 
-function getAll(req, res, next) {
-  reviewsModel.getAll(req.params.id)
-    .then(data => { if (data) return res.status(200).send(data) })
-      .catch(next)
+const getAll = (req, res, next) => {
+  console.log('howdy')
+  model.getAll(req.params.id)
+  .then(data => {
+    if (data) return res.status(200).send(data)
+    else throw next()
+  }).catch(next)
 }
 
 function create(req, res, next) {

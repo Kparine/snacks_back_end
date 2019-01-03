@@ -11,7 +11,7 @@ function getAll() {
 
 function getOne(sId){
   return db('snacks')
-  .where({id: sId})
+  .where({id: id})
   .first()
 }
 

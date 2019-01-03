@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
-const authController = require('./controllers/auth')
 
 if(process.env.NODE_ENV !== 'production'){
   require('dotenv').load()
@@ -18,8 +17,9 @@ app.use(bodyParser.json())
 
 app.use('/auth', require('./routes/auth'))
 app.use('/users', require('./routes/users'))
-app.use('/snacks', require('./routes/snacks'))
-app.use('/reviews', require('./routes/reviews'))
+app.use('/snacks', require('./routes/snacks')) 
+
+app.use('/snacks/:id', require('./routes/reviews'))
 
 const snacks = require('./routes/snacks');
 app.use('/api', snacks);
