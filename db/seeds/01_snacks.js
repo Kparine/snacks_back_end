@@ -7,7 +7,7 @@ exports.seed = knex => {
     })
     .then(() => {
       return knex.raw(
-        "SELECT setval('snacks_id_seq', (SELECT MAX(id) FROM snacks));"
+        `SELECT setval('snacks_id_seq', (SELECT MAX(id) FROM snacks));`
       );
     });
 };

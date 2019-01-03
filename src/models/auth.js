@@ -12,7 +12,6 @@ function login(username, password) {
         status: 400,
         message: 'Bad Request'
       }
-
       user = data
 
       return bcrypt.compare(password, data.password)

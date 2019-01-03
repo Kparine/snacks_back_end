@@ -4,6 +4,7 @@ exports.seed = knex => {
   return knex(TABLE_NAME).insert([{
       id: 1,
       title: 'Salami',
+      content: 'I love salami',
       rating: 3,
       user_id: 1,
       snack_id: 3

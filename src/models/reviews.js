@@ -29,9 +29,9 @@ function create(sId, {title, text, rating, user_id}){
 
 /////////////// UPDATE REVIEW ////////////////
 
-function update(sId, rId, {title, text, rating}){
+function update(sId, rId, {title, content, rating}){
   return db('reviews')
-  .update({title, text, rating})
+  .update({title, content, rating})
   .where({snack_id: sId, id: rId})
   .returning('*')
   .then(([data]) => {
