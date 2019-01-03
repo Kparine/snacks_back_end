@@ -10,7 +10,7 @@ router.get('/reviews/:rId', controllers.getOne)
 
 //////// AUTHORIZED ROUTES //////// 
 
-router.post('/reviews', authController.isAuthenticated, authController.getAuthStatus, controllers.create)
+router.post('/', authController.isAuthenticated, authController.getAuthStatus, controllers.create)
 router.put('/reviews/:rId', authController.isAuthenticated, authController.isSelf, controllers.update )
 router.delete('/reviews/:rId', authController.isAuthenticated,  authController.isSelf, controllers.remove)
 

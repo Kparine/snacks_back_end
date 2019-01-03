@@ -25,7 +25,7 @@ function getAuthStatus(req, res, next) {
 
 function isAuthenticated(req, res, next) {
   if (!req.headers.authorization) {
-    return next({ status: 401, message: Unauthorized })
+    return next({ status: 401, message: 'Unauthorized' })
   }
   const [scheme, token] = req.headers.authorization.split('')
 
