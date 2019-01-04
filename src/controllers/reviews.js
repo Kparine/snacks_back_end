@@ -17,18 +17,18 @@ function getAll(req, res, next) {
 }
 
 function create(req, res, next) {
-  const { title, content, rating, snack_id, user_id } = req.body
-  if (!title || !content || !rating || !snack_id || !user_id)
+  const { title, content, review, snack_id, user_id } = req.body
+  if (!title || !content || !review || !snack_id || !user_id)
     return next({ status: 400, messsage: 'All Fields Are Required' })
-    return reviewsModel.create(title, content, rating, snack_id, user_id)
+    return reviewsModel.create(title, content, review, snack_id, user_id)
       .then(data => { res.status(200).send(data) })
         .catch(next)
 }
 
 function update(req, res, next) {
-  const {title, rating, comment} = req.body
+  const {title, review, comment} = req.body
   const {uid, id, rid} = req.params
-  if (!req.body.title || !req.body.rating || !req.body.comment)
+  if (!req.body.title || !req.body.review || !req.body.comment)
     return next({ status: 400, message: `edit failed. request is empty` })
 
   model.edit(title, rating, comment, uid, id, rid)

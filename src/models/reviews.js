@@ -19,10 +19,10 @@ return db('reviews')
 
 /////////////// CREATE REVIEW ////////////////
 
-function create(title, reviews, comment, user_id, snack_id) {
+function create(title, review, comment, user_id, snack_id) {
   return (
     db('reviews')
-      .insert({ title, reviews, comment, user_id, snack_id })
+      .insert({ title, review, comment, user_id, snack_id })
       .returning('*')
       .then((data) => {
         data
@@ -32,9 +32,9 @@ function create(title, reviews, comment, user_id, snack_id) {
 
 /////////////// UPDATE REVIEW ////////////////
 
-function update(title, reviews, comment, user_id, snack_id, id){
+function update(title, review, comment, user_id, snack_id, id){
   return db('reviews')
-  .update({ title, reviews, comment })
+  .update({ title, review, comment })
   .where({ user_id, snack_id, id })
   .returning('*')
   .then((data) => {
