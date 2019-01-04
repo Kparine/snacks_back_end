@@ -17,29 +17,30 @@ function getAll(req, res, next) {
 }
 
 function create(req, res, next) {
-  const { title, content, review, snack_id, user_id } = req.body
-  if (!title || !content || !review || !snack_id || !user_id)
-    return next({ status: 400, messsage: 'All Fields Are Required' })
-    return reviewsModel.create(title, content, review, snack_id, user_id)
-      .then(data => { res.status(200).send(data) })
-        .catch(next)
+  const {title, rating, comment} = req.body
+  const {uId, id} = req.params
+  
+  if (!title && !rating && !comment)
+    return next({ status: 400, message: `new entries must have all fields` })
+
+  model.create(title, rating, comment, uId, id)
+  .then(data => res.status(200).send(data)).catch(next)
 }
 
 function update(req, res, next) {
-  const {title, review, comment} = req.body
-  const {uid, id, rid} = req.params
-  if (!req.body.title || !req.body.review || !req.body.comment)
+  const {title, rating, comment} = req.body
+  const {uId, id, rId} = req.params
+  if (!title || !rating || !comment)
     return next({ status: 400, message: `edit failed. request is empty` })
 
-  model.edit(title, rating, comment, uid, id, rid)
+  model.edit(title, rating, comment, uId, id, rId)
     .then(data => res.status(200).send(data)).catch(next)
 }
 
 function remove(req, res, next) {
-  const { uid, id, rid } = req.params
-  return reviewsModel.remove(uid, id, rid)
-    .then(data => { res.status(200).send(data) })
-      .catch(next)
+  const { uId, id, rId } = req.params
+  return reviewsModel.remove(uId, id, rId)
+  .then(data => res.status(200).send(data)).catch(next)
 }
 
 module.exports = { getOne, getAll, create, update, remove }

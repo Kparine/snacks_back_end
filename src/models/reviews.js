@@ -19,12 +19,12 @@ return db('reviews')
 
 /////////////// CREATE REVIEW ////////////////
 
-function create(title, review, comment, user_id, snack_id) {
+function create(title, rating, comment, user_id, snack_id) {
   return (
     db('reviews')
-      .insert({ title, review, comment, user_id, snack_id })
+      .insert({ title, rating, comment, user_id, snack_id })
       .returning('*')
-      .then((data) => {
+      .then(([data]) => {
         data
       })
   )
@@ -32,27 +32,29 @@ function create(title, review, comment, user_id, snack_id) {
 
 /////////////// UPDATE REVIEW ////////////////
 
-function update(title, review, comment, user_id, snack_id, id){
-  return db('reviews')
-  .update({ title, review, comment })
-  .where({ user_id, snack_id, id })
-  .returning('*')
-  .then((data) => {
-    return data
-  })
+function update(title, rating, comment, user_id, snack_id, id) {
+  return (
+    db('reviews')
+      .update({ title, rating, comment })
+      .where({ user_id, snack_id, id })
+      .returning('*')
+      .then(([data]) => data)
+  )
 }
 
 /////////////// REMOVE REVIEW ////////////////
 
-function remove(user_id, snack_id, id){
-  return db('reviews')
-  .del()
-  .where({ user_id, snack_id, id })
-  .returning('*')
-  .then((data) => {
-    delete data.id
-    return data
-  })
+function remove(user_id, snack_id, id) {
+  return (
+    db('reviews')
+      .del()
+      .where({ user_id, snack_id, id })
+      .returning('*')
+      .then(([data]) => {
+        delete data.id
+        return data
+      })
+  )
 }
 
 module.exports = { getAll, getOne, create, update, remove }

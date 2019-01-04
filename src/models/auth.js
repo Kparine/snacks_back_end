@@ -6,7 +6,7 @@ const userModel = require('./users')
 function login(username, password) {
   let user
 
-  return userModel.getOne(username)
+  return userModel.getUser(username)
     .then(function (data) {
       if (!data) throw {
         status: 400,
