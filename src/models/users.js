@@ -2,7 +2,7 @@ const db = require('../../db/knex.js')
 const bcrypt = require('bcrypt')
 
 
-function getOne(username) {
+function getUser(username) {
   return (
     db('users')
     .where({ username })
@@ -11,7 +11,9 @@ function getOne(username) {
 }
 
 function create(username, password) {
-  return getOneByUserName(username)
+  console.log(username);
+  
+  return getUser(username)
   .then(function(data) {
     if(data) throw { status: 400, message: 'Username Already Exists' }
 
@@ -30,4 +32,4 @@ function create(username, password) {
   })
 }
 
-module.exports = { getOne, create }
+module.exports = { getUser, create }

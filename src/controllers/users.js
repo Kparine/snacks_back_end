@@ -1,8 +1,8 @@
 const userModel = require('../models/users')
 
-function getOne(req, res, next) {
+function getUser(req, res, next) {
   const id = req.params.uId
-  return userModel.userReview(id)
+  return userModel.getUser(id)
   .then(result => {
     res.send(200).send({ data: result })
   })
@@ -23,4 +23,4 @@ function create(req, res, next){
   .catch(next)
 }
 
-module.exports = { create, getOne }
+module.exports = { create, getUser }

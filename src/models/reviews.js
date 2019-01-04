@@ -11,11 +11,9 @@ function getAll(id) {
 
 /////////////// GET ONE REVIEW ////////////////
 
-function getOne( snack_id, id ) {
-  console.log(id);
-  
+function getOne( id, rId ) {  
 return db('reviews')
-.where({ snack_id, id })
+.where({ snack_id: id, id: rId })
 .first()
 }
 
