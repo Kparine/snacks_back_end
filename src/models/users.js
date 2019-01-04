@@ -2,7 +2,7 @@ const db = require('../../db/knex.js')
 const bcrypt = require('bcrypt')
 
 
-function getOneByUserName(username) {
+function getOne(username) {
   return (
     db('users')
     .where({ username })
@@ -30,4 +30,4 @@ function create(username, password) {
   })
 }
 
-module.exports = { getOneByUserName, create }
+module.exports = { getOne, create }

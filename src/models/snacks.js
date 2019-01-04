@@ -9,7 +9,7 @@ function getAll() {
 
 /////////////// GET ONE SNACK ///////////////
 
-function getOne(sId){
+function getOne(id){
   return db('snacks')
   .where({id: id})
   .first()

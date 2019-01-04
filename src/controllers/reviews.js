@@ -2,17 +2,17 @@ const reviewsModel = require('../models/reviews')
 
 
 function getOne(req, res, next) {
-  reviewsModel.getOne(req.params.id)  
-  if (!req.body) return next({ status: 404, messsage: 'Post Does Not Exist' })
-    res.status(200).send(req.body)
+  const { id, rId } = req.params
+  reviewsModel.getOne(id, rId)
+    .then(data => {
+      if (data) return res.status(200).send(data)
+    }).catch(next)
 }
 
-const getAll = (req, res, next) => {
-  console.log('howdy')
-  model.getAll(req.params.id)
+function getAll(req, res, next) {
+  reviewsModel.getAll(req.params.id)
   .then(data => {
     if (data) return res.status(200).send(data)
-    else throw next()
   }).catch(next)
 }
 
@@ -26,16 +26,18 @@ function create(req, res, next) {
 }
 
 function update(req, res, next) {
-  const { id, title, content, rating, snack_id, user_id } = req.body
-  if (!title || !content || !rating || !snack_id || !user_id)
-    return reviewsModel.update(id, title, content, rating, snack_id, user_id)
-      .then(data => { res.status(200).send(data) })
-        .catch(next)
+  const {title, rating, comment} = req.body
+  const {uid, id, rid} = req.params
+  if (!req.body.title || !req.body.rating || !req.body.comment)
+    return next({ status: 400, message: `edit failed. request is empty` })
+
+  model.edit(title, rating, comment, uid, id, rid)
+    .then(data => res.status(200).send(data)).catch(next)
 }
 
 function remove(req, res, next) {
-  const id = req.params.id
-  return reviewsModel.remove(id)
+  const { uid, id, rid } = req.params
+  return reviewsModel.remove(uid, id, rid)
     .then(data => { res.status(200).send(data) })
       .catch(next)
 }
