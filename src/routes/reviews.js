@@ -10,8 +10,8 @@ router.get('/:rId', controllers.getOne)
 
 //////// AUTHORIZED ROUTES //////// 
 
-router.post('/', authController.isAuthenticated, authController.getAuthStatus, controllers.create)
-router.put('/:rId', authController.isAuthenticated, authController.isSelf, controllers.update )
-router.delete('/:rId', authController.isAuthenticated,  authController.isSelf, controllers.remove)
+router.post('/', authController.isAuthenticated, controllers.create)
+router.put('/:rId', authController.isAuthenticated, authController.ownsReview, controllers.update )
+router.delete('/:rId', authController.isAuthenticated,  authController.ownsReview, controllers.remove)
 
 module.exports = router

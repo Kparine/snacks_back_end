@@ -1,13 +1,11 @@
 const authModel = require('../models/auth')
 const jwt = require('jsonwebtoken')
+const reviewModel = require('../models/reviews')
 
 
 
 function login(req, res, next) {
-  if (!req.body.username) {
-    return next({ status: 400, message: 'Bad Request' })
-  }
-  if (!req.body.password) {
+  if (!req.body.username || !req.body.password) {
     return next({ status: 400, message: 'Bad Request' })
   }
   authModel.login(req.body.username, req.body.password)
@@ -24,28 +22,36 @@ function getAuthStatus(req, res, next) {
 }
 
 function isAuthenticated(req, res, next) {
-  
-  if (!req.headers.authorization) {
-    return next({ status: 401, message: 'Not Authenticated' })
-  }
+
+  if (!req.headers.authorization)
+
+    return next({ status: 401, message: 'Authentication Failed' })
+
   const [scheme, token] = req.headers.authorization.split(' ')
-
   jwt.verify(token, process.env.SECRET, (err, payload) => {
-    if (err) {
-      return next({ status: 401, message: 'No Token' })
-       
-    }
-    req.claim = payload
 
+    if (err) return next({ status: 401, message: 'Unauthorized' })
+    req.claim = payload
     next()
   })
 }
 function isSelf(req, res, next) {
-  if(parseInt(req.params.userId) !== req.claim.id){
+  if(parseInt(req.params.uId) !== req.claim.id){
     return next({status: 401, message: 'Not You'})
   }
   next()
 }
 
+function ownsReview(req, res, next){
+  const reviewId = req.params.rId
+  const snackId = req.params.id
 
-module.exports = { login, getAuthStatus, isAuthenticated, isSelf }
+  reviewModel.getOne(snackId, reviewId)
+  .then(review => {
+    if(review.user_id === req.claim.id) return next()
+    else return next({status: 401, message: 'Not You'})
+  })
+}
+
+
+module.exports = { login, getAuthStatus, isAuthenticated, isSelf, ownsReview }

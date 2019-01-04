@@ -5,16 +5,16 @@ exports.seed = knex => {
     {
       id: 1,
       title: 'Salami',
-      content: 'I love salami',
+      comment: 'I love salami',
       rating: 3,
       user_id: 1,
       snack_id: 3
     }, {
       id: 2,
       title: 'Beans',
-      content: 'They\'re magical',
+      comment: 'They\'re magical',
       rating: 5,
-      user_id: 1,
+      user_id: 2,
       snack_id: 3
     }
 

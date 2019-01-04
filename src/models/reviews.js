@@ -1,7 +1,6 @@
 const db = require('../../db/knex')
 
 
-
 /////////////// GET ALL REVIEWS ///////////////
 
 function getAll(id) {
@@ -25,30 +24,32 @@ function create(title, rating, comment, user_id, snack_id) {
       .insert({ title, rating, comment, user_id, snack_id })
       .returning('*')
       .then(([data]) => {
-        data
+        return data
       })
   )
 }
 
 /////////////// UPDATE REVIEW ////////////////
 
-function update(title, rating, comment, user_id, snack_id, id) {
+function update(title, rating, comment, snack_id, id) {
   return (
     db('reviews')
       .update({ title, rating, comment })
-      .where({ user_id, snack_id, id })
+      .where({ snack_id, id })
       .returning('*')
-      .then(([data]) => data)
+      .then(([data]) => {
+        return data
+    })
   )
 }
 
 /////////////// REMOVE REVIEW ////////////////
 
-function remove(user_id, snack_id, id) {
+function remove(snack_id, id) {
   return (
     db('reviews')
       .del()
-      .where({ user_id, snack_id, id })
+      .where({ snack_id, id })
       .returning('*')
       .then(([data]) => {
         delete data.id
